@@ -29,8 +29,7 @@ public class ProductoController {
 	// import org.apache.log4j.LogManager;
 	private Logger logger = LogManager.getLogger(ProductoController.class);
 
-	@Autowired
-	private ProductoRepositoryI productoRepositoryI;
+
 
 	@GetMapping(path = "/consultar/{idCategoria}/{idAutor}/{estado}/{titulo}/{fechaLlegada}/{maxPeriodo}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ProductoDTO> consultarPrestamo(@PathVariable(name = "idCategoria") String idCategoria,
@@ -41,7 +40,7 @@ public class ProductoController {
 		if ( idCategoria != null || idAutor != null || estado  < 0 || titulo  != null || fechaLlegada  != null || maxPeriodo  != null || 
 				idCategoria != "" || idAutor != "" || titulo  != "" || fechaLlegada  != "" || maxPeriodo  != "") {
 			
-			productoDTO = productoRepositoryI.consultarProducto(idCategoria, idAutor, estado, titulo, fechaLlegada, maxPeriodo);
+			// productoDTO = productoRepositoryI.consultarProducto(idCategoria, idAutor, estado, titulo, fechaLlegada, maxPeriodo);
 
 		}
 		return productoDTO;
@@ -53,7 +52,7 @@ public class ProductoController {
 		
 		Categoria categoria = new Categoria();
 		if ( idCategoria != null || idCategoria != "" ) {
-			categoria = productoRepositoryI.consultarProductoCategoria( idCategoria );
+			// categoria = productoRepositoryI.consultarProductoCategoria( idCategoria );
 		}
 		return categoria;
 	}
@@ -68,7 +67,7 @@ public class ProductoController {
 		
 		Producto producto = new Producto();
 		if ( fechaInactivacion != null || cantidadEjemplares != null || maxPeriodo != null || estado < 0 ) {
-			producto = productoRepositoryI.actualizarProducto(fechaInactivacion, cantidadEjemplares, maxPeriodo, estado);
+			// producto = productoRepositoryI.actualizarProducto(fechaInactivacion, cantidadEjemplares, maxPeriodo, estado);
 		}
 		return producto;
 	}	

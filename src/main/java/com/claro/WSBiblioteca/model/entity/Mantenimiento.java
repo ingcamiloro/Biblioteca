@@ -1,41 +1,76 @@
 package com.claro.WSBiblioteca.model.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Table(name="mantenimiento")
 @Entity
-@Table(name = "mantenimiento", schema = "public")
-@Getter
-@Setter
-@ToString
-public class Mantenimiento implements Serializable {
+public class Mantenimiento {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_mantenimiento", length = 4, nullable = false)
-	private String idMantenimiento;
-	
-	@Id
-	@Column(name = "id_producto", length = 10, nullable = false)
-	private String idProdcuto;
-	
-	@Column(name = "fecha_inicio", length = 12, nullable =  false)
-	private Date fechaInicio;
-	
-	@Column(name = "fecha_entrega", length = 12, nullable = true)
-	private Date fechaEntrega;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_mantenimiento")
+    private int id;
+
+
+    @Column(name="fechaInicioMantenimiento")
+    private Date fechaInicioMantenimiento;
+
+    @Column(name="fechaFinMantenimiento")
+    private Date fechaFinMantenimiento;
+
+    @JsonIgnore
+	@ManyToOne	
+	@JoinColumn(name="fk_id_producto")
+	private Producto producto;
+
+    public Mantenimiento() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getFechaInicioMantenimiento() {
+        return fechaInicioMantenimiento;
+    }
+
+    public void setFechaInicioMantenimiento(Date fechaInicioMantenimiento) {
+        this.fechaInicioMantenimiento = fechaInicioMantenimiento;
+    }
+
+    public Date getFechaFinMantenimiento() {
+        return fechaFinMantenimiento;
+    }
+
+    public void setFechaFinMantenimiento(Date fechaFinMantenimiento) {
+        this.fechaFinMantenimiento = fechaFinMantenimiento;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+
+    
+
 
 }

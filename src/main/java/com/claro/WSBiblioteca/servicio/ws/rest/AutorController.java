@@ -21,14 +21,13 @@ public class AutorController {
 
 	private Logger logger = LogManager.getLogger(ProductoController.class);
 	
-	@Autowired
-	private AutorRepository autorRepository;
+
 	
 	@GetMapping(path = "/consultar{idAutor}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Autor consultarAutor(@PathVariable(name = "idAutor") String idAutor) {
 		Autor autor = new Autor();
 		if (idAutor != null || idAutor != "") {
-			autor = autorRepository.consultarAutor(idAutor);
+			// autor = autorRepository.consultarAutor(idAutor);
 		}
 		return autor;
 	}

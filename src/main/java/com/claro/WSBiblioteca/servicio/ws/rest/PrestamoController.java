@@ -26,8 +26,8 @@ public class PrestamoController {
 
 	private Logger logger = LogManager.getLogger(ProductoController.class);
 
-	@Autowired
-	private PrestamoRepositoryI prestamoRepositoryI;
+	// @Autowired
+	// private PrestamoRepositoryI prestamoRepositoryI;
 
 	@PostMapping(path = "/solicitar/{idProducto}/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public PrestamoDTO solicitarPrestamo(@PathVariable(required = true, name = "idProducto") String idProducto,
@@ -41,7 +41,7 @@ public class PrestamoController {
 		PrestamoDTO prestamoDTO = new PrestamoDTO();
 		try {
 			if (idProducto != null || idUsuario != null || idProducto != "" || idUsuario != "") {
-				prestamoDTO = prestamoRepositoryI.solicitarPrestamo(idProducto, idUsuario);
+				// prestamoDTO = prestamoRepositoryI.solicitarPrestamo(idProducto, idUsuario);
 			}	
 			logger.info("Finalizacion consumo del servicio exitosa: /*  + wsProxyDto.toString() + */ Respuesta: "
 					+ response);			
@@ -56,7 +56,7 @@ public class PrestamoController {
 			@PathVariable(name = "idUsuario") String idUsuario) {
 		List<PrestamoDTO> prestamoDTO = new ArrayList<PrestamoDTO>();
 		if (idPrestamo != null || idUsuario != null || idPrestamo != "" || idUsuario != "") {
-			prestamoDTO = prestamoRepositoryI.consultarPrestamo(idPrestamo, idUsuario);
+			// prestamoDTO = prestamoRepositoryI.consultarPrestamo(idPrestamo, idUsuario);
 		}
 		return prestamoDTO;
 	}

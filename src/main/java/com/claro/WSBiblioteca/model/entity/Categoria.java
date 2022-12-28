@@ -1,32 +1,78 @@
 package com.claro.WSBiblioteca.model.entity;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+@Table(name="categoria")
 @Entity
-@Table(name = "categoria", schema = "public")
-@Getter
-@Setter
-@ToString
-public class Categoria implements Serializable {
+public class Categoria {    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_categoria")
+    private int id;
+    @Column(name="nombre")
+    private String nombre;
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_categoria", length = 4, nullable = false)
-	private String idCategoria;
-	
-	@Column(name = "nombre_categoria", length = 50, nullable = false)
-	private String nombreCategoria;
+    @OneToMany(mappedBy = "categoria")
+    List<Producto> productos;
+  
+
+    public Categoria() {
+    }
+
+    
+
+    public Categoria(String nombre) {
+        this.nombre = nombre;
+    }
+
+
+
+    public Categoria(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+
+
+
+
+    
+
+
+
 }

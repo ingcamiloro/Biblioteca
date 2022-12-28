@@ -1,31 +1,68 @@
 package com.claro.WSBiblioteca.model.entity;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.Serializable;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Table(name="autor")
 @Entity
-@Table(name = "autor", schema = "public")
-@Getter
-@Setter
-@ToString
-public class Autor implements Serializable{
-	private static final long serialVersionUID = -5235196532556803317L;
+public class Autor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_autor", length = 2, nullable = false)
-	private Integer idAutor;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_autor")
+    private int id;
 
-	@Column(name = "nombre_autor", length = 12, nullable = false)
-	private String nombreAutor;		
+
+    @Column(name="nombre")
+    private String nombre;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "autores",cascade = CascadeType.REMOVE)
+    private List<Producto> productos = new ArrayList<Producto>();
+  
+
+    public Autor() {
+    }
+
+    public Autor(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;  
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }    
+
+    
 }
